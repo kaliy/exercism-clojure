@@ -1,9 +1,9 @@
 (ns armstrong-numbers)
 
 (defn num-to-digits [num & {:keys [accum] :or {accum `()}}]
-  (let [current-num (biginteger (mod num 10))]
+  (let [current-num (biginteger (rem num 10))]
     (if (> num 0)
-      (num-to-digits (bigint (/ num 10)) :accum (conj accum current-num))
+      (recur (biginteger (/ num 10)) {:accum (conj accum current-num)})
       accum)))
 
 (defn armstrong? [num]
